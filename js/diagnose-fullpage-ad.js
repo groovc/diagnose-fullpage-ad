@@ -1,15 +1,28 @@
 // ==UserScript==
 // @name         Full Page Ad Diagnostics
 // @namespace    http://mobile.fandango.com
-// @version      1.01
+// @version      1.02
 // @description  Check diagnostics
 // @author       Victor Chen
 // @match        http*://mobile.fandango.com/*
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js
 // ==/UserScript==
+
 (function() {
-	'use strict';
+    'use strict';
+
+    // Helper Function
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
 
 	// Define some variables   
     var isFullpage = mpscall["field[fullpage]"]; // check for the fullpage trigger
