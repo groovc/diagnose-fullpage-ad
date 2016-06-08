@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Full Page Ad Diagnostics
 // @namespace    http://mobile.fandango.com
-// @version      1.04
+// @version      1.05
 // @description  Check diagnostics
 // @author       Victor Chen
 // @match        http*://mobile.fandango.com/*
