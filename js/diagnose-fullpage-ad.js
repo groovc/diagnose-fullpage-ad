@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Full Page Ad Diagnostics
 // @namespace    http://mobile.fandango.com
-// @version      1.0
+// @version      1.01
 // @description  Check diagnostics
 // @author       Victor Chen
 // @match        http*://mobile.fandango.com/*
@@ -24,41 +24,41 @@
 
     if (isFullpage === undefined) {
     	if (window.console) {
-    		window.console.log("[AD OPS] MPS Fullpage Property: Doesn't exist");
+    		window.console.log("[FULL PAGE DIAGNOSE] MPS Fullpage Property: Doesn't exist");
     	}
     	isFullPageString = "MPS Fullpage Property doesn't exist";
     } else {
     	if (window.console) {
-    		window.console.log("[AD OPS] MPS Fullpage Property: "+isFullpage);
+    		window.console.log("[FULL PAGE DIAGNOSE] MPS Fullpage Property: "+isFullpage);
     	}
     	isFullPageString = "MPS Fullpage is: "+isFullpage;
     }
 
     if (isAdInterstitial === null) {
     	if (window.console) {
-    		window.console.log("[AD OPS] AdInterstitial cookie: Doesn't exist");
+    		window.console.log("[FULL PAGE DIAGNOSE] AdInterstitial cookie: Doesn't exist");
     	}
     	isAdInterstitialString = "AdInterstitial cookie doesn't exist";
     } else {
     	if (window.console) {
-    		window.console.log("[AD OPS] Parse Ad Expire      : "+adExpireMsg);
-    		window.console.log("[AD OPS] Current Date/Time    : "+now.format("MM/DD/YYYY HH:mm:ss A"));
-	  		window.console.log("[AD OPS] Frequency Cap Ends in: "+duration+" minutes");
+    		window.console.log("[FULL PAGE DIAGNOSE] Parse Ad Expire      : "+adExpireMsg);
+    		window.console.log("[FULL PAGE DIAGNOSE] Current Date/Time    : "+now.format("MM/DD/YYYY HH:mm:ss A"));
+	  		window.console.log("[FULL PAGE DIAGNOSE] Frequency Cap Ends in: "+duration+" minutes");
     	}
     	isAdInterstitialString = "AdInterstitial is: "+isAdInterstitial;
     }
 
     if (isAdInterstitial === "Expired") {
     	if (window.console) {
-    		window.console.log("[AD OPS] Full Page Ad Interstitial will display on the next screen");
+    		window.console.log("[FULL PAGE DIAGNOSE] Full Page Ad Interstitial will display on the next screen");
     	}
     } else if (isAdInterstitial && isFullpage === 1) {
     	if (window.console) {
-    		window.console.log("[AD OPS] Full Page Ad Interstitial is displayed");
+    		window.console.log("[FULL PAGE DIAGNOSE] Full Page Ad Interstitial is displayed");
     	}
     } else {
     	if (window.console) {
-    		window.console.log("[AD OPS] Full Page Ad Interstitial is not displayed");
+    		window.console.log("[FULL PAGE DIAGNOSE] Full Page Ad Interstitial is not displayed");
     	}
     }
 
