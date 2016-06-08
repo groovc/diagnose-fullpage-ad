@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Full Page Ad Diagnostics
 // @namespace    http://mobile.fandango.com
-// @version      1.02
+// @version      1.03
 // @description  Check diagnostics
 // @author       Victor Chen
 // @match        http*://mobile.fandango.com/*
@@ -30,8 +30,8 @@
     var adCookieExpires = moment(isAdInterstitial,"MM/DD/YYYY HH:mm:ss A"); // parse the time
     var adExpireMsg = (isAdInterstitial === "Expired") ? "Expired":adCookieExpires.format("MM/DD/YYYY HH:mm:ss A")+" GMT";
     var offset = moment().utcOffset(); // get the current offset
-	var now = moment(); // get the current time
-	var duration = (isAdInterstitial === "Expired") ? 0:moment(adCookieExpires).diff(now,'minutes')+offset; // calculate duration remaining
+	var now = moment().add(offset,"minutes"); // get the current time
+	var duration = (isAdInterstitial === "Expired") ? 0:moment(adCookieExpires).diff(now,'minutes'); // calculate duration remaining
     var isFullPageString,
     	isAdInterstitialString;
 
