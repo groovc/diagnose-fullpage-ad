@@ -56,7 +56,7 @@
     } else {
     	if (window.console) {
     		window.console.log("[FULL PAGE DIAGNOSE] Parse Ad Expire      : "+adExpireMsg);
-    		window.console.log("[FULL PAGE DIAGNOSE] Current Date/Time    : "+nowInGMT);
+    		window.console.log("[FULL PAGE DIAGNOSE] Current Date/Time    : "+nowInGMT+" GMT");
 	  		window.console.log("[FULL PAGE DIAGNOSE] Frequency Cap Ends in: "+duration+" minutes");
     	}
     	isAdInterstitialString = "AdInterstitial is: "+isAdInterstitial;
