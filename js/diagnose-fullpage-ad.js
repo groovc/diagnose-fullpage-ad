@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Full Page Ad Diagnostics
 // @namespace    http://mobile.fandango.com
-// @version      1.06
+// @version      1.07
 // @description  Check diagnostics
 // @author       Victor Chen
 // @match        http*://mobile.fandango.com/*
@@ -28,35 +28,36 @@
     var isFullpage = mpscall["field[fullpage]"]; // check for the fullpage trigger
     var isAdInterstitial = getCookie("AdInterstitial"); // check for cookie
     var adCookieExpires = moment(isAdInterstitial,"MM/DD/YYYY HH:mm:ss A"); // parse the time
-    var adExpireMsg = (isAdInterstitial === "Expired") ? "Expired":adCookieExpires.format("MM/DD/YYYY HH:mm:ss A")+" GMT";
+    var adExpireMsg = (isAdInterstitial === "Expired") ? "Expired":adCookieExpires.format("MM/DD/YYYY HH:mm:ss A");
     var offset = moment().utcOffset(); // get the current offset
 	var now = moment(); // get the current time
 	var duration = (isAdInterstitial === "Expired") ? 0:moment(adCookieExpires).diff(now,'minutes')+offset; // calculate duration remaining
+    var nowInGMT = now.subtract(offset,"minutes").format("MM/DD/YYYY HH:mm:ss A"); // GMT conversion
     var isFullPageString,
     	isAdInterstitialString;
 
     if (isFullpage === undefined) {
     	if (window.console) {
-    		window.console.log("[DIAGNOSE - FULL PAGE AD] MPS Fullpage Property: Doesn't exist");
+    		window.console.log("[DIAGNOSE - FULL PAGE AD] MPS Fullpage Property  : Doesn't exist");
     	}
     	isFullPageString = "MPS Fullpage Property doesn't exist";
     } else {
     	if (window.console) {
-    		window.console.log("[DIAGNOSE - FULL PAGE AD] MPS Fullpage Property: "+isFullpage);
+    		window.console.log("[DIAGNOSE - FULL PAGE AD] MPS Fullpage Property  : "+isFullpage);
     	}
     	isFullPageString = "MPS Fullpage is: "+isFullpage;
     }
 
     if (isAdInterstitial === null) {
     	if (window.console) {
-    		window.console.log("[DIAGNOSE - FULL PAGE AD] AdInterstitial cookie: Doesn't exist");
+    		window.console.log("[DIAGNOSE - FULL PAGE AD] AdInterstitial cookie  : Doesn't exist");
     	}
     	isAdInterstitialString = "AdInterstitial cookie doesn't exist";
     } else {
     	if (window.console) {
-    		window.console.log("[DIAGNOSE - FULL PAGE AD] Parse Ad Expire      : "+adExpireMsg);
-    		window.console.log("[DIAGNOSE - FULL PAGE AD] Current Date/Time    : "+now);
-	  		window.console.log("[DIAGNOSE - FULL PAGE AD] Frequency Cap Ends in: "+duration+" minutes");
+    		window.console.log("[DIAGNOSE - FULL PAGE AD] Parse Ad Expire (GMT)  : "+adExpireMsg);
+    		window.console.log("[DIAGNOSE - FULL PAGE AD] Current Date/Time (GMT): "+nowInGMT);
+	  		window.console.log("[DIAGNOSE - FULL PAGE AD] Frequency Cap Ends in  : "+duration+" minutes");
     	}
     	isAdInterstitialString = "AdInterstitial is: "+isAdInterstitial;
     }
